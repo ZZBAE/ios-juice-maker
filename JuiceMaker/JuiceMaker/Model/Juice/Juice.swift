@@ -2,7 +2,7 @@
 //  Juice.swift
 //  JuiceMaker
 //
-//  Created by 변재은 on 2022/04/26.
+//  Created by bradheo65, bonf, ZZBAE on 2022/04/26.
 //
 
 enum Juice: CaseIterable {
@@ -14,15 +14,14 @@ enum Juice: CaseIterable {
     case kiwi
     case pineapple
 
-    //주스에 들어가는 재료를 한번에 하면?
-    var chooseJuiceRecipe: [Fruits: Int] {
+    var chooseJuice: [Fruit: Int] {
         switch self {
         case .strawberry:
             return [.strawberry: 16]
         case .banana:
             return [.banana: 2]
         case .strawberryBanana:
-            return [.strawberry: 10, .banana: 1]
+            return [.strawberry: 10, .banana: 5]
         case .mango:
             return [.mango: 3]
         case .mangoKiwi:
