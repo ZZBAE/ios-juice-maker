@@ -5,9 +5,9 @@
 //
 
 struct JuiceMaker {
-    let fruitStore = FruitStore(defaultFruitStock: 2)
+    let fruitStore = FruitStore(defaultFruitStock: 10)
     
-    func orderFruitJuice(of juice: Juice) throws {
+    func makeJuice(of juice: Juice) throws {
         try chooseRecipe(order: juice)
     }
     
@@ -21,7 +21,7 @@ struct JuiceMaker {
     private func checkFruitStock(fruit: Fruit, amount: Int) throws {
         guard let stockFruit = fruitStore.stocks[fruit],
               stockFruit >= amount else {
-            throw StockError.outOfError
+            throw StockError.outOfStock
         }
     }
     

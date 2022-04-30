@@ -21,7 +21,7 @@ enum Juice: CaseIterable {
         case .banana:
             return [.banana: 2]
         case .strawberryBanana:
-            return [.strawberry: 10, .banana: 5]
+            return [.strawberry: 10, .banana: 1]
         case .mango:
             return [.mango: 3]
         case .mangoKiwi:
