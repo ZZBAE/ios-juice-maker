@@ -7,11 +7,29 @@
 struct JuiceMaker {
     let fruitStore = FruitStore(defaultFruitStock: 2)
     
-    func orderFruitJuice(of juice: Juice){
-        do {
-            try fruitStore.chooseRecipe(order: juice)
-        } catch {
-            print(error)
+    func orderFruitJuice(of juice: Juice) throws {
+        try chooseRecipe(order: juice)
+    }
+    
+    func chooseRecipe(order: Juice) throws {
+        for (fruit, fruitAmount) in order.recipeOfJuice {
+            try checkFruitStock(fruit: fruit, amount: fruitAmount)
+        }
+        useStock(juice: order)
+    }
+
+    private func checkFruitStock(fruit: Fruit, amount: Int) throws {
+        guard let stockFruit = fruitStore.stocks[fruit],
+              stockFruit >= amount else {
+            throw StockError.outOfError
+        }
+    }
+    
+    private func useStock(juice: Juice) {
+        for (fruit, fruitAmount) in juice.recipeOfJuice {
+            if let stockFruit = fruitStore.stocks[fruit] {
+                fruitStore.stocks.updateValue(stockFruit - fruitAmount, forKey: fruit)
+            }
         }
     }
 }
