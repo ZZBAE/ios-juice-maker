@@ -14,7 +14,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="makeJuice" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -221,12 +221,13 @@
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
                                 <action selector="goStock:" destination="BYZ-38-t0r" id="Tio-zF-wfT"/>
-                                <segue destination="Yu1-lM-nqp" kind="show" destinationCreationSelector="goStock2:" id="ecg-iN-3mX"/>
+                                <segue destination="Yu1-lM-nqp" kind="show" identifier="ShowFruitStock" destinationCreationSelector="moveStockStage:" id="ecg-iN-3mX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="StockStrawberry" destination="Qas-vP-td6" id="PF6-Fg-VSm"/>
+                        <segue destination="Yu1-lM-nqp" kind="show" id="UWv-HQ-gyc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -255,7 +256,7 @@
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController id="Yu1-lM-nqp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="stockFruit" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -384,7 +385,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ecg-iN-3mX"/>
+        <segue reference="UWv-HQ-gyc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
