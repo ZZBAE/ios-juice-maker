@@ -228,7 +228,6 @@
                     <connections>
                         <outlet property="StockBanana" destination="gvk-pA-Lw5" id="zTH-fe-7RO"/>
                         <outlet property="StockStrawberry" destination="Qas-vP-td6" id="PF6-Fg-VSm"/>
-                        <segue destination="Yu1-lM-nqp" kind="show" id="UWv-HQ-gyc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -369,6 +368,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
@@ -380,13 +380,12 @@
                         <segue destination="Yu1-lM-nqp" kind="relationship" relationship="rootViewController" id="wH1-3A-cBm"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1637" y="21"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UWv-HQ-gyc"/>
+        <segue reference="ecg-iN-3mX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
