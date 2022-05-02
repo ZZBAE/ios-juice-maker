@@ -226,6 +226,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="StockBanana" destination="gvk-pA-Lw5" id="zTH-fe-7RO"/>
                         <outlet property="StockStrawberry" destination="Qas-vP-td6" id="PF6-Fg-VSm"/>
                         <segue destination="Yu1-lM-nqp" kind="show" id="UWv-HQ-gyc"/>
                     </connections>
