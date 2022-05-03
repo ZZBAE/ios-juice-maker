@@ -72,7 +72,7 @@ class ViewController: UIViewController {
     }
     
     func updateStocks() {
-        guard let starwberry = juiceMaker.fruitStore.stocks[.strawberry],
+        guard let strawberry = juiceMaker.fruitStore.stocks[.strawberry],
               let banana = juiceMaker.fruitStore.stocks[.banana],
               let kiwi = juiceMaker.fruitStore.stocks[.kiwi],
               let mango = juiceMaker.fruitStore.stocks[.mango],
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
         else {
             return
         }
-        StockStrawberry.text = "\(starwberry)"
+        StockStrawberry.text = "\(strawberry)"
         StockBanana.text = "\(banana)"
         StockKiwi.text = "\(kiwi)"
         StockMango.text = "\(mango)"
