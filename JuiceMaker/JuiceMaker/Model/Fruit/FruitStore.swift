@@ -6,11 +6,12 @@
 //
 
 class FruitStore {
+    static let shared = FruitStore()
     var stocks: [Fruit: Int] = [:]
     var insufficientStock: [Fruit: Int] = [:]
     
-    init(defaultFruitStock: Int) {
-        Fruit.allCases.forEach { stocks[$0] = defaultFruitStock }
+    private init() {
+        Fruit.allCases.forEach { stocks[$0] = 10 }
     }
     
     func checkFruitStock(fruit: Fruit, amount: Int) throws {
