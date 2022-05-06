@@ -27,6 +27,21 @@ class JuiceMakerViewController: UIViewController {
         make(juice: juice)
     }
     
+    private func setStock(fruit: Fruit, stock: Int) {
+        switch fruit {
+        case .strawberry:
+            strawberryLabel.text = "\(stock)"
+        case .banana:
+            bananaLabel.text = "\(stock)"
+        case .kiwi:
+            kiwiLabel.text = "\(stock)"
+        case .mango:
+            mangoLabel.text = "\(stock)"
+        case .pineapple:
+            pineappleLabel.text = "\(stock)"
+        }
+    }
+    
     private func updateStock() {
         guard let strawberry = juiceMaker.fruitStore.stocks[.strawberry],
               let banana = juiceMaker.fruitStore.stocks[.banana],
@@ -47,20 +62,24 @@ class JuiceMakerViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(of: juice)
             alertSuccessMakeJuice(juice: juice)
-            updateStock()
+            juice.recipe.keys.forEach { fruit in
+                guard let fruitStock = juiceMaker.fruitStore.stocks[fruit] else { return }
+                setStock(fruit: fruit, stock: fruitStock)
+            }
         } catch {
-          guard let error = error as? StockError else {
-            return
-          }
-          switch error {
-          case .outOfStock:
-            alertFailMakeJuice()
-            juiceMaker.fruitStore.insufficientStock.removeAll()
-          case .unknown:
-            alertUnknownError()
-          }
+            guard let error = error as? StockError else {
+                return
+            }
+            switch error {
+            case .outOfStock:
+                alertFailMakeJuice()
+                juiceMaker.fruitStore.insufficientStock.removeAll()
+            case .unknown:
+                alertUnknownError()
+            }
         }
     }
+    
     private func alertUnknownError() {
         let unknownErrorAlert = UIAlertController(title: "unknownError",
                                                   message: "알 수 없는 에러가 발생하였습니다.",
@@ -74,12 +93,12 @@ class JuiceMakerViewController: UIViewController {
     
     private func alertSuccessMakeJuice(juice: Juice) {
         let successAlert = UIAlertController(title: "성공!",
-                                                  message: "\(juice.name)쥬스 나왔습니다! 맛있게 드세요!",
-                                                  preferredStyle: .alert)
+                                             message: "\(juice.name)쥬스 나왔습니다! 맛있게 드세요!",
+                                             preferredStyle: .alert)
         
         successAlert.addAction(UIAlertAction(title: "확인",
-                                                  style: .default,
-                                                  handler: nil))
+                                             style: .default,
+                                             handler: nil))
         self.present(successAlert, animated: false)
     }
     
