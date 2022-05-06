@@ -106,8 +106,8 @@ class JuiceMakerViewController: UIViewController {
     
     private func alertSuccessMakeJuice(juice: Juice) {
         let successAlert = UIAlertController(title: "성공!",
-                                                  message: "\(juice)쥬스 나왔습니다! 맛있게 드세요!",
-                                                  preferredStyle: .alert)
+                                             message: "\(juice)쥬스 나왔습니다! 맛있게 드세요!",
+                                             preferredStyle: .alert)
         
         successAlert.addAction(UIAlertAction(title: "확인",
                                                   style: .default,

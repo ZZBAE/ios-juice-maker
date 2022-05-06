@@ -5,7 +5,7 @@
 //  Created by bradheo65, bonf, ZZBAE on 2022/04/26.
 //
 
-enum Juice: Int, CaseIterable {
+enum Juice: Int, CaseIterable, CustomStringConvertible {
     case strawberry 
     case banana
     case kiwi
@@ -14,7 +14,7 @@ enum Juice: Int, CaseIterable {
     case strawberryBanana
     case mangoKiwi
 
-    var name: String {
+    var description: String {
         switch self {
         case .strawberry:
             return "딸기"
