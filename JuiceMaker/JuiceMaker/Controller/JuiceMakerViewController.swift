@@ -9,11 +9,7 @@ import UIKit
 class JuiceMakerViewController: UIViewController {
     var juiceMaker = JuiceMaker()
     
-    @IBOutlet weak private var strawberryLabel: UILabel!
-    @IBOutlet weak private var bananaLabel: UILabel!
-    @IBOutlet weak private var kiwiLabel: UILabel!
-    @IBOutlet weak private var mangoLabel: UILabel!
-    @IBOutlet weak private var pineappleLabel: UILabel!
+    @IBOutlet private var labels: [UILabel]!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -22,30 +18,31 @@ class JuiceMakerViewController: UIViewController {
     
     @IBAction private func orderFruitJuice(_ sender: UIButton) {
         if let juice = Juice(rawValue: sender.tag) {
-            make(juice: juice)
+            make(juice)
         }
+    }
+    
+    private func setStock(_ fruit: Fruit,_ stock: Int) {
+        labels[fruit.rawValue].text = "\(stock)"
     }
     
     private func updateStock() {
-        if let strawberry = juiceMaker.fruitStore.stocks[.strawberry],
-           let banana = juiceMaker.fruitStore.stocks[.banana],
-           let kiwi = juiceMaker.fruitStore.stocks[.kiwi],
-           let mango = juiceMaker.fruitStore.stocks[.mango],
-           let pineapple = juiceMaker.fruitStore.stocks[.pineapple] {
-            
-            strawberryLabel.text = "\(strawberry)"
-            bananaLabel.text = "\(banana)"
-            kiwiLabel.text = "\(kiwi)"
-            mangoLabel.text = "\(mango)"
-            pineappleLabel.text = "\(pineapple)"
+        for fruitNumber in 0..<labels.count {
+            guard let fruit = Fruit(rawValue: fruitNumber) else { return }
+            guard let stock = juiceMaker.fruitStore.stocks[fruit] else { return }
+            labels[fruitNumber].text = "\(stock)"
         }
     }
     
-    private func make(juice: Juice) {
+    private func make(_ juice: Juice) {
         do {
             try juiceMaker.makeJuice(of: juice)
-            alertSuccessMakeJuice(juice: juice)
-            updateStock()
+            alertSuccessMakeJuice(juice)
+            juice.recipe.keys.forEach { fruit in
+                if let fruitStock = juiceMaker.fruitStore.stocks[fruit] {
+                    setStock(fruit, fruitStock)
+                }
+            }
         } catch {
             guard let error = error as? StockError else {
                 return
@@ -72,7 +69,7 @@ class JuiceMakerViewController: UIViewController {
         self.present(unknownErrorAlert, animated: false)
     }
     
-    private func alertSuccessMakeJuice(juice: Juice) {
+    private func alertSuccessMakeJuice(_ juice: Juice) {
         let successAlert = UIAlertController(title: "성공!",
                                              message: "\(juice.name)쥬스 나왔습니다! 맛있게 드세요!",
                                              preferredStyle: .alert)
