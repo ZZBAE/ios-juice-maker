@@ -16,8 +16,7 @@ class FruitStoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setStock()
-        setStepper()
+        setStockAndStepper()
     }
     
     @IBAction private func changeStepperValue(_ sender: UIStepper) {
@@ -31,18 +30,11 @@ class FruitStoreViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func setStock() {
+    private func setStockAndStepper() {
         for fruitNumber in 0..<labels.count {
             guard let fruit = Fruit(rawValue: fruitNumber) else { return }
             guard let stock = fruitStore.stocks[fruit] else { return }
             labels[fruitNumber].text = "\(stock)"
-        }
-    }
-    
-    private func setStepper() {
-        for fruitNumber in 0..<labels.count {
-            guard let fruit = Fruit(rawValue: fruitNumber) else { return }
-            guard let stock = fruitStore.stocks[fruit] else { return }
             Stepper[fruitNumber].value = Double(stock)
         }
     }

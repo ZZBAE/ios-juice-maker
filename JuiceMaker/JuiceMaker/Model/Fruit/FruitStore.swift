@@ -10,7 +10,7 @@ class FruitStore {
     
     var stocks: [Fruit: Int] = [:]
     var insufficientStock: [Fruit: Int] = [:]
-    var defaultFruitStock: Int = 10
+    private let defaultFruitStock: Int = 10
     
     init() {
         Fruit.allCases.forEach { stocks[$0] = defaultFruitStock }
